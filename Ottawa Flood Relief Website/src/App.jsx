@@ -1,10 +1,9 @@
-function App() {
+import { HeaderBar } from "./components/header-bar"
+
+export function App() {
   return (
     <>
-      <h1>My First React Website</h1>
-      <p>Built with React + Vite</p>
+    < HeaderBar />
     </>
   );
 }
-
-export default App;
