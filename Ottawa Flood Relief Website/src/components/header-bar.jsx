@@ -1,17 +1,18 @@
+import "../App.css";
+
+
 export function HeaderBar() {
   return (
   <>
-      <div className="header-bar">
-        <p> Ottawa Flood Relief Navigator</p>
-        <div className="button-container">
-          <button className = "about-button"> About </button>
-          <label className = "tools-button"> Tools </label>
-          <select className="tools-dropdown">
-            <option> Map </option>
-            <option> Navigator AI </option>
-          </select>
-        </div>
+    <nav className="header-bar"> 
+      <p className="header-title"> Ottawa Flood Relief Website </p>
+      <div className="page-directories">
+        <a href="/"> Home </a>
+        <a href="/map"> Map </a>
+        <a href="/resources"> Resources </a>
+        <a href="/about"> About </a>
       </div>
-    </>
-  )
+    </nav>
+  </>
+  );
 }

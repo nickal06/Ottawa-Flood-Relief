@@ -1,0 +1,30 @@
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: #0a6c74;
+  padding: 10px 25px;
+}
+
+.header-title {
+  color: white;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.page-directories {
+  display: flex;
+  gap: 25px;
+}
+
+.page-directories a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.page-directories a:hover {
+  text-decoration: underline;
+}
