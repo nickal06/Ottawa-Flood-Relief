@@ -1,5 +1,4 @@
-import "./header-bar.css";
-
+import "../pages/home";
 
 export function HeaderBar() {
   return (

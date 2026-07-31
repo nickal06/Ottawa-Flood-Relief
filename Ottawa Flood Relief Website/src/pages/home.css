@@ -2,6 +2,10 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+p {
+  color: #2c2c2e;
+}
+
 .header-bar {
   display: flex;
   align-items: center;
@@ -20,41 +24,11 @@ body {
   gap: 10px;
 }
 
-
-.about-button,
-.tools-button {
-  background-color: #0a6c74;
-  color: white;
-  border: 1px solid white;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: 0.3s ease;
-  font-size: 1rem;
-}
-
-
-.about-button:hover,
-.tools-button:hover {
-  background-color: white;
-  color: #0a6c74;
-}
-
-.tools-dropdown {
-  background-color: #0a6c74;
-  color: white;
-  border: 1px solid white;
-  padding: 10px 20px;
-  cursor: pointer;
-  font-size: 1rem;
-  height: 43px;
-
-}
-
 .top-section {
   display: flex;
   width: 100%;
   min-height: 500px;
-  background-color: #d6d9df;
+  background-color: #0a6c74 !important;
   padding: 60px 10%;
   gap: 50px;
   box-sizing: border-box;
@@ -63,6 +37,7 @@ body {
 .type-writer-animation {
   flex: 1.5;
   display: flex;
+  color: white;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
@@ -72,7 +47,7 @@ body {
 .subtext {
   margin-top: 20px;
   font-size: 0.85rem;
-  color: #2c2c2e;
+  color: #fdfdfd !important;
   max-width: 450px;
 }
 
@@ -82,7 +57,7 @@ body {
   padding: 12px 35px;
   border: none;
   border-radius: 25px;
-  background-color: #0F8B8D;
+  background-color: rgb(35, 140, 35);
   color: white;
   font-size: 1rem;
   font-weight: bold;
@@ -91,7 +66,7 @@ body {
 }
 
 .sign-up-button:hover {
-  background-color: #0B6B6D;
+  background-color:rgb(35, 140, 35);
 }
 
 
@@ -125,7 +100,7 @@ body {
   height: 50px;
   border-radius: 50%;
   border: none;
-  background-color: #0F8B8D;
+  background-color: rgb(35, 140, 35);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -139,7 +114,7 @@ body {
 .typewriter::after {
   content: "|";
   animation: blink 0.7s infinite;
-  color: #0B1F3A;
+  color: #fbfdff !important;
   margin-left: 5px;
 }
 
@@ -151,4 +126,136 @@ body {
   51%, 100% {
     opacity: 0;
   }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.header-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0a6c74;
+  padding: 10px 25px;
+}
+
+.header-title {
+  color: white;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.page-directories {
+  display: flex;
+  gap: 25px;
+}
+
+.page-directories a {
+  color: white;
+  text-decoration: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+  vertical-align: middle;
+  margin-top: 5px;
+   padding: 12px 24px;
+}
+
+.page-directories a:hover {
+  text-decoration: underline;
+}
+
+.sign-in-button {
+  border: 2px solid rgb(35, 140, 35);
+  background-color: rgb(35, 140, 35);
+  border-radius: 5px;
+}
+
+.info-section-container-grey,
+.info-section-container-white {
+    display: flex;
+    width: 100%;
+    min-height: 400px;
+}
+
+.info-section-container-grey {
+    background-color: #716c6c;
+}
+
+.info-section-container-white {
+    background-color: white;
+}
+
+
+.info-text-section-container {
+    
+    width: 50%;
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+
+.info-image-section-container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.info-section-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.info-section-container-grey {
+    display: flex;
+    width: 100%;
+    min-height: 400px;
+    background-color: #d6d9df;
+}
+
+.info-section-container-white {
+    display: flex;
+    width: 100%;
+    min-height: 400px;
+    background-color: white;
+}
+
+
+.search-bar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+}
+
+
+.search-description-text {
+  margin-bottom: 0px; 
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  margin-top: -8px; 
+}
+
+.input-address {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+}
+
+.search-button {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-left: none;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
 }
