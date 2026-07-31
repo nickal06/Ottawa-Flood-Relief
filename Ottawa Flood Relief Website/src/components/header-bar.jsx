@@ -1,4 +1,4 @@
-import "../App.css";
+import "./header-bar.css";
 
 
 export function HeaderBar() {
@@ -7,10 +7,9 @@ export function HeaderBar() {
     <nav className="header-bar"> 
       <p className="header-title"> Ottawa Flood Relief Website </p>
       <div className="page-directories">
-        <a href="/"> Home </a>
+        <a href="/home"> Home </a>
         <a href="/map"> Map </a>
-        <a href="/resources"> Resources </a>
-        <a href="/about"> About </a>
+        <a href="/resources" className="sign-in-button"> Sign in </a>
       </div>
     </nav>
   </>

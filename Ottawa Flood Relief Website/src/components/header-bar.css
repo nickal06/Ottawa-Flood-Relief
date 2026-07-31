@@ -1,8 +1,12 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .header-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
   background-color: #0a6c74;
   padding: 10px 25px;
 }
@@ -23,8 +27,18 @@
   text-decoration: none;
   font-size: 0.9rem;
   cursor: pointer;
+  vertical-align: middle;
+  margin-top: 5px;
+   padding: 12px 24px;
 }
 
 .page-directories a:hover {
   text-decoration: underline;
 }
+
+.sign-in-button {
+  border: 2px solid rgb(35, 140, 35);
+  background-color: rgb(35, 140, 35);
+  border-radius: 5px;
+}
+
