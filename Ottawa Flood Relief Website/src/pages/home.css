@@ -66,7 +66,7 @@ p {
 }
 
 .sign-up-button:hover {
-  background-color:rgb(35, 140, 35);
+  background-color:rgb(30, 120, 30) !important;
 }
 
 
@@ -105,6 +105,10 @@ p {
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: rgb(30, 120, 30);
 }
 
 .search-button img {
@@ -172,6 +176,10 @@ body {
   border-radius: 5px;
 }
 
+.sign-in-button:hover {
+  background-color: rgb(30, 120, 30);
+}
+
 .info-section-container-grey,
 .info-section-container-white {
     display: flex;
@@ -234,7 +242,7 @@ body {
     padding: 35px;
     background: #ffffff;
     border-radius: 16px;
-    box-shadow: 0px 8px 25px rgba(0,0,0,0.1);
+    box-shadow: 0px 8px 25px rgba(0.1,0,0,0.1);
 }
 
 .location-description {

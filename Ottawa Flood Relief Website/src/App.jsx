@@ -10,6 +10,7 @@ export function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home/>} />
+          <Route path="/home" element={<Home/>} />
           <Route path="/map" element={<Map/>} />
         </Routes>
       </BrowserRouter>
