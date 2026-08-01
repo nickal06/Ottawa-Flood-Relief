@@ -1,13 +1,18 @@
 import { HeaderBar } from "../components/header-bar";
 import { TypeWriter } from "../components/typewriter-text";
-import searchIcon from "../assets/search-icon.png";
 import "./Home.css";
 import { InfoSection } from "../components/Info-Section";
 import reliefImage from "../assets/relief.png";
 import newsImage from "../assets/news.png";
 import alertImage from "../assets/alert-icon.png";
+import { AddressSearchComponent } from "../components/address-search";
+import { useState } from "react";
+import { SignUpModal } from "../components/sign-up-pop-up-window";
 
 export function Home() {
+  
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
+
   return (
     <>
       <HeaderBar />
@@ -20,28 +25,9 @@ export function Home() {
           <p className="subtext"> 
             *By clicking Sign Up below, you are agreeing to allow OFRW to use your data for personalized services.
           </p>
-          <button className="sign-up-button"> 
+          <button className="sign-up-button" onClick = {() => setShowSignUpModal(true)}> 
             Sign up now! 
           </button>
-        </div>
-
-        <div className="search-bar-container">
-          <p className="search-description-text">
-            Give OFRW a one-time try, and instantly see latest news, services, and more pertaining to your area. 
-            <br /><br />
-            <b>Sign up to save preferences and data for a better experience.</b>
-          </p>
-  
-          <div className="search-box">
-            <input 
-              className="input-address" 
-              type="text" 
-              placeholder="Enter your address" 
-            />
-            <button className="search-button" type="button"> 
-              <img src={searchIcon} alt="search" />
-            </button>
-          </div>
         </div>
       </div>
 
@@ -65,6 +51,12 @@ export function Home() {
         className="info-section-container-grey"  
         image={newsImage}
       />
+      < AddressSearchComponent />
+      {showSignUpModal && (
+        <SignUpModal 
+          onClose={() => setShowSignUpModal(false)} 
+        />
+      )}
     </>
   );
 }
