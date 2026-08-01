@@ -8,14 +8,16 @@ import alertImage from "../assets/alert-icon.png";
 import { AddressSearchComponent } from "../components/address-search";
 import { useState } from "react";
 import { SignUpModal } from "../components/sign-up-pop-up-window";
+import { SignInModal } from "../components/sign-in-pop-up-window";
 
 export function Home() {
   
   const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const [showSignInModal, setShowSignInModal] = useState(false);
 
   return (
     <>
-      <HeaderBar />
+      <HeaderBar setShowSignInModal={() => setShowSignInModal(true)} />
 
       <div className="top-section">
         <div className="type-writer-animation">
@@ -55,6 +57,11 @@ export function Home() {
       {showSignUpModal && (
         <SignUpModal 
           onClose={() => setShowSignUpModal(false)} 
+        />
+      )}
+      {showSignInModal && (
+        <SignInModal 
+          onClose={() => setShowSignInModal(false)} 
         />
       )}
     </>

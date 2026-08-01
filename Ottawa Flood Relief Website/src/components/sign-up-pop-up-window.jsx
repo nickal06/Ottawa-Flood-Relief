@@ -1,11 +1,11 @@
-import "./sign-up-pop-up-window.css";
+import "./sign-in-up-pop-up-window.css";
 import { Modal } from "./modal";
 
 export function SignUpModal({ onClose }) {
   return (
     <Modal close={onClose}>
 
-      <h2>Sign Up for Ottawa Flood Relief Services</h2>
+      <h2>Sign up for Ottawa Flood Relief Services</h2>
 
       <h3>Account Information</h3>
 

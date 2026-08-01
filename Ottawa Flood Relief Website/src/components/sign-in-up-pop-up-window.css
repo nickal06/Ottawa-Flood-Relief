@@ -51,7 +51,7 @@
 }
 
 
-.submit-button {
+.submit-button, .sign-in-button {
   padding: 12px 40px;
 
   border-radius: 25px;
@@ -68,7 +68,7 @@
   transition: 0.2s ease;
 }
 
-.submit-button:hover {
+.submit-button:hover, .sign-in-button:hover {
   background-color: rgb(35, 140, 35);
   transform: scale(1.05);
 }
