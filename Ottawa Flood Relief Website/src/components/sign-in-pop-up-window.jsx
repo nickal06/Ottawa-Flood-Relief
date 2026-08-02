@@ -5,6 +5,41 @@ import { useState } from "react";
 export function SignInModal({ onClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginStatus, setLoginStatus] = useState(""); 
+
+  async function handleSignIn(event) {
+    if (event) event.preventDefault();
+
+    try {
+    const response = await fetch("http://localhost:5000/api/auth/login", {
+      method: "POST", 
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+
+    const data = await response.text(); 
+
+    if (!response.ok) {
+    
+      setLoginStatus(data || "Invalid email or password. Please try again.");
+      return;
+    }
+   
+    setLoginStatus("Login successful!");
+    setTimeout(() => {
+      onClose();
+      }, 2000);
+
+    } catch (error) {
+    console.error("Network error during login:", error);
+    setLoginStatus("An error occurred. Please try again.");
+    }
+  }
 
   return (
     <Modal close={onClose}>
@@ -30,8 +65,14 @@ export function SignInModal({ onClose }) {
         />
       </div>
       
+      <p
+       style={{ color: loginStatus.includes("successful") ? "green" : "red" }}
+      >
+        {loginStatus}
+      </p>
+
       <button 
-      className="sign-in-button">
+      className="sign-in-button" onClick={handleSignIn}>
         Sign in
       </button>
 
