@@ -20,7 +20,8 @@ export function SignInModal({ onClose }) {
         />
       </div>
 
-      <div className="form-group">
+      <div 
+      className="form-group">
         <input
           placeholder="Enter your password"
           type="password"
@@ -29,7 +30,10 @@ export function SignInModal({ onClose }) {
         />
       </div>
       
-      <button className="sign-in-button">Sign in</button>
+      <button 
+      className="sign-in-button">
+        Sign in
+      </button>
 
     </Modal>
   )
