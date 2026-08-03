@@ -3,6 +3,7 @@ import { Home } from "./pages/home";
 import { Map } from "./pages/map";
 import { InfoSection } from "./components/info-section";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { AIChatWidget } from "./components/AI-chat-widget";
 
 export function App() {
   return (
@@ -14,6 +15,7 @@ export function App() {
           <Route path="/map" element={<Map/>} />
         </Routes>
       </BrowserRouter>
+      <AIChatWidget />
     </>
   );
 }

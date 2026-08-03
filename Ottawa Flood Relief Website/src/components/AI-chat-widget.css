@@ -1,0 +1,37 @@
+.floaitng-chat-button {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgb(35, 140, 35);
+  color: #ffffff;
+  font-size: 26px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  z-index: 9999; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.floaitng-chat-button:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+.ai-chat-widget {
+  position: fixed !important;
+  bottom: 95px !important;
+  right: 25px !important;
+  z-index: 99999 !important;
+  width: 350px;
+  height: 480px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+}
