@@ -41,7 +41,7 @@ export function AIChatWidget() {
             
             <h1 
               className="chat-widget-title"> 
-                Navigator
+                Navigator Chat 
             </h1>
             <button 
               className="close-button" 
@@ -59,7 +59,7 @@ export function AIChatWidget() {
                 key={msg.id}
                 style={{
                   alignSelf: msg.sender === "user" ? "flex-end" : "flex-start",
-                  backgroundColor: msg.sender === "user" ? "#007bff" : "#e9ecef",
+                  backgroundColor: msg.sender === "user" ? "#0a6c74" : "#e9ecef",
                   color: msg.sender === "user" ? "#fff" : "#000",
                   padding: "8px 12px",
                   borderRadius: "12px",

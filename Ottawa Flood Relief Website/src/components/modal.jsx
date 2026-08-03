@@ -7,7 +7,7 @@ export function Modal({ children, close }) {
       <div className="modal-window">
 
         <button 
-          className="close-button"
+          className="close-button-modal"
           onClick={close}
         >
           X

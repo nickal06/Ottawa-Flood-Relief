@@ -1,12 +1,19 @@
 import { Modal } from "./Modal";
 import "./sign-in-up-pop-up-window.css";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 export function SignInModal({ onClose }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [loginStatus, setLoginStatus] = useState(""); 
+  const [loginStatus, setLoginStatus] = useState("");
+  
+  const navigate = useNavigate();
 
+  function handleSignUp(){
+    navigate("/user-dashboard");
+  }
+  
   async function handleSignIn(event) {
     if (event) event.preventDefault();
 
@@ -30,10 +37,10 @@ export function SignInModal({ onClose }) {
       return;
     }
    
-    setLoginStatus("Login successful!");
+    setLoginStatus("Login successful! Please wait...");
     setTimeout(() => {
-      onClose();
-      }, 2000);
+      handleSignUp();
+      }, 2500);
 
     } catch (error) {
     console.error("Network error during login:", error);

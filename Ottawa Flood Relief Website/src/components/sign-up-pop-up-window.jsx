@@ -1,6 +1,7 @@
 import "./sign-in-up-pop-up-window.css";
 import { Modal } from "./modal";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export function SignUpModal({ onClose }) {
   const [email, setEmail] = useState("");
@@ -16,6 +17,12 @@ export function SignUpModal({ onClose }) {
   const [userCreated, setUserCreated] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  const navigate = useNavigate();
+
+  function handleSignUp(){
+    navigate("/user-dashboard");
+  }
+  
   async function handleSubmit(event) {
     if (event) event.preventDefault();
 
@@ -57,7 +64,7 @@ export function SignUpModal({ onClose }) {
     setUserCreated(true);
 
     setTimeout(() => {
-      onClose();
+      handleSignUp();
     }, 2500);
 
     } catch (error) {
@@ -173,7 +180,7 @@ export function SignUpModal({ onClose }) {
         </p>
 
         <p style={{ color: "green" }}>
-          {userCreated ? "User created successfully!" : ""}
+          {userCreated ? "User created successfully! Please wait..." : ""}
         </p>
 
         <div className="button-container">
