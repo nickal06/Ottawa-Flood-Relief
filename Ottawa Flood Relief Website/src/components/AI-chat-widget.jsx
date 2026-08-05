@@ -8,6 +8,7 @@ export function AIChatWidget({ messages , setMessages }) {
 
   const messagesEndRef = useRef(null);
 
+
   function toggleChat() {
     setIsOpen(!isOpen);
   }
@@ -63,6 +64,7 @@ export function AIChatWidget({ messages , setMessages }) {
     } finally {
       setIsLoading(false);
     }
+  
   }
 
   return (
