@@ -7,6 +7,7 @@ export function HeaderBar({ setShowSignInModal }) {
       <div className="page-directories">
         <a href="/home"> Home </a>
         <a href="/map"> Map </a>
+        <a href="/user-dashboard"> User Dashboard </a>
         <a className="sign-in-button" onClick={setShowSignInModal}>
           Sign in
         </a>

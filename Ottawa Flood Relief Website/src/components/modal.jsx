@@ -1,4 +1,5 @@
 import "./modal.css";
+import { useState } from 'react';
 
 export function Modal({ children, close }) {
   return (

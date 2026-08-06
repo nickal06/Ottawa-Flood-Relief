@@ -10,11 +10,11 @@ export function SignInModal({ onClose }) {
   
   const navigate = useNavigate();
 
-  function handleSignUp(){
+  function handleSignIn(){
     navigate("/user-dashboard");
   }
   
-  async function handleSignIn(event) {
+  async function handleSignIn2(event) {
     if (event) event.preventDefault();
 
     try {
@@ -29,17 +29,18 @@ export function SignInModal({ onClose }) {
       }),
     });
 
-    const data = await response.text(); 
+    const data = await response.json(); 
 
     if (!response.ok) {
     
       setLoginStatus(data || "Invalid email or password. Please try again.");
       return;
     }
-   
+
+    localStorage.setItem("token", data.token);
     setLoginStatus("Login successful! Please wait...");
     setTimeout(() => {
-      handleSignUp();
+      handleSignIn();
       }, 2500);
 
     } catch (error) {
@@ -79,7 +80,7 @@ export function SignInModal({ onClose }) {
       </p>
 
       <button 
-      className="sign-in-button" onClick={handleSignIn}>
+      className="sign-in-button" onClick={handleSignIn2}>
         Sign in
       </button>
 

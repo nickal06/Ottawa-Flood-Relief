@@ -3,7 +3,7 @@ import { Modal } from "./modal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function SignUpModal({ onClose }) {
+export function SignUpModal({ onClose, isLoggedIn, setLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -21,6 +21,7 @@ export function SignUpModal({ onClose }) {
 
   function handleSignUp(){
     navigate("/user-dashboard");
+    setLogin(true);
   }
   
   async function handleSubmit(event) {
@@ -176,7 +177,7 @@ export function SignUpModal({ onClose }) {
         </div>
 
         <p style={{ color: "red" }}>
-          {errorMessage ? errorMessage : ""}
+          {errorMessage ? errorMessage : ""} Don't have an account? <a href="/home">Go to Home to Sign In.</a>
         </p>
 
         <p style={{ color: "green" }}>

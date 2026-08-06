@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
+const jtoken = require("jsonwebtoken");
 
 router.post("/register", async (req, res) => {
   console.log("--> Registration request received for:", req.body.email);
@@ -56,8 +57,20 @@ router.post("/login", async (req, res) => {
       return res.status(400).send("Invalid email or password");
     }
 
+    const token = jtoken.sign(
+    {
+      id: user._id,
+      email: user.email
+    },
+    process.env.JWT_SECRET,
+    {
+    expiresIn: "24h"
+    }
+  );
+
     return res.status(200).json({
       message: "Login successful",
+      token: token,
       user: {
         id: user._id,
         email: user.email,
