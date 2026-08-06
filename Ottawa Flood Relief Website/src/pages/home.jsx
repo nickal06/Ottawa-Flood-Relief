@@ -12,12 +12,8 @@ import { SignInModal } from "../components/sign-in-pop-up-window";
 
 export function Home() {
   
-  const [showSignUpModal, setShowSignUpModal] = useState(false);
-  const [showSignInModal, setShowSignInModal] = useState(false);
-
   return (
     <>
-      <HeaderBar setShowSignInModal={() => setShowSignInModal(true)} />
 
       <div className="top-section">
         <div className="type-writer-animation">
@@ -54,16 +50,6 @@ export function Home() {
         image={newsImage}
       />
       < AddressSearchComponent />
-      {showSignUpModal && (
-        <SignUpModal 
-          onClose={() => setShowSignUpModal(false)} 
-        />
-      )}
-      {showSignInModal && (
-        <SignInModal 
-          onClose={() => setShowSignInModal(false)} 
-        />
-      )}
     </>
   );
 }

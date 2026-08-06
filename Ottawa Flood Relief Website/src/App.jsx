@@ -6,8 +6,13 @@ import { UserDashboard } from "./pages/user-dashboard";
 import { Home } from "./pages/home";
 import { Map } from "./pages/map";
 import { AIChatWidget } from "./components/AI-chat-widget";
+import { HeaderBar } from "./components/header-bar";
 
 export function App() {
+  
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
+  const [showSignInModal, setShowSignInModal] = useState(false);
+  
   const [isLoggedIn, setLogin] = useState(
     !!localStorage.getItem("token")
   );
@@ -24,6 +29,8 @@ export function App() {
 
   return (
     <>
+      
+      <HeaderBar setShowSignInModal={() => setShowSignInModal(true)} />
       <Routes>
         <Route path="/" element={<Home />} />
 
@@ -45,6 +52,17 @@ export function App() {
         messages={messages}
         setMessages={setMessages}
       />
+
+      {showSignUpModal && (
+        <SignUpModal 
+          onClose={() => setShowSignUpModal(false)} 
+        />
+      )}
+      {showSignInModal && (
+        <SignInModal 
+          onClose={() => setShowSignInModal(false)} 
+        />
+      )}
     </>
   );
 }
