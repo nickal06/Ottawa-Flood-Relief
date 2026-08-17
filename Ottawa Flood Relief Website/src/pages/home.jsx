@@ -45,7 +45,7 @@ export function Home() {
 
       <InfoSection 
         title="Find News and Safety Services" 
-        text="Access verified updates from the City of Ottawa, Environment Canada, and emergency management agencies. Receive practical guidance, preparedness tips, and recovery information from trusted sources—all in one place." 
+        text="Access verified updates from the City of Ottawa, Environment Canada, and emergency management agencies. Receive practical guidance, preparedness tips, and recovery information from trusted sources all in one place." 
         className="info-section-container-grey"  
         image={newsImage}
       />

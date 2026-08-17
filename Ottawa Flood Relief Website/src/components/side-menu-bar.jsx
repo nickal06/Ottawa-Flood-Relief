@@ -35,7 +35,7 @@ return (
 
 
     <nav className="side-menu-nav">
-      <Link to="/map">Map</Link>
+      <a>Alerts</a>
       <a>News</a>
       <a>Services</a>
     </nav>
