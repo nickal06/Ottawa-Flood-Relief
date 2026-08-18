@@ -7,12 +7,19 @@ import { Home } from "./pages/home";
 import { Map } from "./pages/map";
 import { AIChatWidget } from "./components/AI-chat-widget";
 import { HeaderBar } from "./components/header-bar";
+import { SignInModal } from "./components/sign-in-pop-up-window";
+import { SignUpModal } from "./components/sign-up-pop-up-window";
 
 export function App() {
-  
+
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showSignInModal, setShowSignInModal] = useState(false);
-  
+
+  // Get username from localStorage when the app starts
+  const [userName, setUserName] = useState(
+    localStorage.getItem("userName") || ""
+  );
+
   const [isLoggedIn, setLogin] = useState(
     !!localStorage.getItem("token")
   );
@@ -26,12 +33,21 @@ export function App() {
     localStorage.setItem("messages", JSON.stringify(messages));
   }, [messages]);
 
+  // Save username whenever it changes
+  useEffect(() => {
+    if (userName) {
+      localStorage.setItem("userName", userName);
+    }
+  }, [userName]);
 
   return (
     <>
-      
-      <HeaderBar setShowSignInModal={() => setShowSignInModal(true)} />
+      <HeaderBar
+        setShowSignInModal={() => setShowSignInModal(true)}
+      />
+
       <Routes>
+
         <Route path="/" element={<Home />} />
 
         <Route path="/home" element={<Home />} />
@@ -42,10 +58,11 @@ export function App() {
           path="/user-dashboard"
           element={
             <ProtectedRoute isLoggedIn={isLoggedIn}>
-              <UserDashboard />
+              <UserDashboard userName={userName} />
             </ProtectedRoute>
           }
         />
+
       </Routes>
 
       <AIChatWidget
@@ -54,13 +71,16 @@ export function App() {
       />
 
       {showSignUpModal && (
-        <SignUpModal 
-          onClose={() => setShowSignUpModal(false)} 
+        <SignUpModal
+          onClose={() => setShowSignUpModal(false)}
+          setUserName={setUserName}
         />
       )}
+
       {showSignInModal && (
-        <SignInModal 
-          onClose={() => setShowSignInModal(false)} 
+        <SignInModal
+          onClose={() => setShowSignInModal(false)}
+          setUserName={setUserName}
         />
       )}
     </>

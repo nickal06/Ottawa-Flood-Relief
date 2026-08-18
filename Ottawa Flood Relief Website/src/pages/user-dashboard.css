@@ -1,0 +1,18 @@
+.dashboard-content {
+    margin-left: 325px;
+
+    min-height: calc(100vh - 80px);
+    box-sizing: border-box;
+
+    padding: 40px;
+}
+
+.dashboard-content h2 {
+    margin: 0;
+    color: black;
+    font-size: 2rem;
+}
+
+.user-name {
+  color: rgb(35, 140, 35);
+}

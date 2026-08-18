@@ -11,14 +11,11 @@ console.log("Loaded dotenv. MONGO_URI is:", process.env.MONGO_URI ? "Defined" : 
 
 const app = express();
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Initialize Google GenAI client
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
-// MongoDB Connection
 console.log("Attempting MongoDB connection...");
 mongoose
   .connect(process.env.MONGO_URI, {
@@ -29,17 +26,15 @@ mongoose
 
 mongoose.set("bufferCommands", false);
 
-// --- Routes ---
 
 app.get("/", (req, res) => {
   res.send("API is running");
 });
 
-// Authentication Routes
 const authRoutes = require("./routes/auth");
 app.use("/api/auth", authRoutes);
 
-// Gemini Chat Route
+
 app.post("/api/chat", async (req, res) => {
   try {
     const { messages } = req.body;
@@ -60,7 +55,6 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-// --- Server Listener ---
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`🚀 Server is running at http://localhost:${PORT}`);

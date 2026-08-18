@@ -2,6 +2,7 @@
     position: fixed;
     top: 65px;
     left: 10px;
+
     background: transparent;
     border: none;
     z-index: 2000;
@@ -13,88 +14,33 @@
     height: 75px;
 }
 
-
-.side-menu-open,
-.side-menu-closed {
-    position: fixed;
-    top: 72px; 
-    left: 0;
-    height: calc(100vh - 80px);
-    width: 100%;
-    z-index: 1500;
-}
-
-
-.side-menu-overlay {
-    position: fixed;
-    top: 50px;
-    left: 0;
-    width: 100%;
-    height: calc(100vh - 80px);
-
-}
-
-
 .side-menu-panel {
-
     position: fixed;
-    top: 68px !important;
+    top: 68px;
     left: 0;
+
     width: 325px;
     height: calc(100vh - 80px);
-    background: #2c99a3;
+
+    box-sizing: border-box;
+
+    background: #7d8c91;
     padding: 25px;
-    transition: transform .3s ease;
+
     z-index: 1600;
 }
 
-.side-menu-open .side-menu-panel {
-    transform: translateX(0);
-}
-
-
-.side-menu-closed .side-menu-panel {
-    transform: translateX(-100%);
-}
-
-.close-button {
-
-    position: absolute;
-    top: 22px;
-    right: 20px;
-    background: transparent !important;
-    border: none;
-    color: white;
-    font-size: 28px;
-    cursor: pointer;
-}
-
-
 .side-menu-nav {
-
     margin-top: 50px;
+
     display: flex;
     flex-direction: column;
     gap: 40px;
 }
 
-
 .side-menu-nav a {
-
-    color: white;
-    font-size: 22px;
+    color: black;
+    font-size: 0.9rem;
     text-decoration: none;
-}
-
-
-.dashboard {
-
-    margin-left: 0;
-    transition: margin-left .3s ease;
-}
-
-
-.dashboard.shifted {
-
-    margin-left: 325px;
+    cursor: pointer;
 }

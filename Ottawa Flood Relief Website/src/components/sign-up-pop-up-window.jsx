@@ -3,7 +3,7 @@ import { Modal } from "./modal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function SignUpModal({ onClose, isLoggedIn, setLogin }) {
+export function SignUpModal({ onClose, setLogin, setUserName }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -19,13 +19,8 @@ export function SignUpModal({ onClose, isLoggedIn, setLogin }) {
 
   const navigate = useNavigate();
 
-  function handleSignUp(){
-    navigate("/user-dashboard");
-    setLogin(true);
-  }
-  
   async function handleSubmit(event) {
-    if (event) event.preventDefault();
+    event.preventDefault();
 
     setErrorMessage("");
     setUserCreated(false);
@@ -35,38 +30,43 @@ export function SignUpModal({ onClose, isLoggedIn, setLogin }) {
       return;
     }
 
-  try {
-    const response = await fetch("http://localhost:5000/api/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        username: email ? email.split("@")[0] : "",
-        email: email,
-        password: password,
-        address: address,
-        numberOfAdults: Number(numberOfAdults) || 0,
-        numberOfChildren: Number(numberOfChildren) || 0,
-        numberOfPets: Number(numberOfPets) || 0,
-        specialNeeds: specialNeeds,
-      }),
-    });
+    const username = email ? email.split("@")[0] : "";
 
-    const data = await response.text();
-    console.log("Server response:", data);
+    try {
+      const response = await fetch("http://localhost:5000/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: username,
+          email: email,
+          password: password,
+          address: address,
+          numberOfAdults: Number(numberOfAdults) || 0,
+          numberOfChildren: Number(numberOfChildren) || 0,
+          numberOfPets: Number(numberOfPets) || 0,
+          specialNeeds: specialNeeds,
+        }),
+      });
 
-    if (!response.ok) {
-      console.error("Registration error:", data);
-      setErrorMessage(data || "An error occurred. Please try again.");
-      return;
-    }
+      const data = await response.text();
 
-    setUserCreated(true);
+      console.log("Server response:", data);
 
-    setTimeout(() => {
-      handleSignUp();
-    }, 2500);
+      if (!response.ok) {
+        console.error("Registration error:", data);
+        setErrorMessage(data || "An error occurred. Please try again.");
+        return;
+      }
+
+      setUserCreated(true);
+      setLogin(true);
+
+      setTimeout(() => {
+        onClose();
+        navigate("/user-dashboard");
+      }, 2500);
 
     } catch (error) {
       console.error("Fetch error:", error);
@@ -124,7 +124,10 @@ export function SignUpModal({ onClose, isLoggedIn, setLogin }) {
             placeholder="Number of adults in household"
             type="number"
             min="0"
-            onChange={(e) => setNumberOfAdults(Math.max(0, Number(e.target.value)))}
+            value={numberOfAdults}
+            onChange={(e) =>
+              setNumberOfAdults(Math.max(0, Number(e.target.value)))
+            }
           />
         </div>
 
@@ -133,7 +136,10 @@ export function SignUpModal({ onClose, isLoggedIn, setLogin }) {
             placeholder="Number of children in household"
             type="number"
             min="0"
-            onChange={(e) => setNumberOfChildren(Math.max(0, Number(e.target.value)))}
+            value={numberOfChildren}
+            onChange={(e) =>
+              setNumberOfChildren(Math.max(0, Number(e.target.value)))
+            }
           />
         </div>
 
@@ -142,7 +148,10 @@ export function SignUpModal({ onClose, isLoggedIn, setLogin }) {
             placeholder="Number of pets in household"
             type="number"
             min="0"
-            onChange={(e) => setNumberOfPets(Math.max(0, Number(e.target.value)))}
+            value={numberOfPets}
+            onChange={(e) =>
+              setNumberOfPets(Math.max(0, Number(e.target.value)))
+            }
           />
         </div>
 
@@ -162,14 +171,17 @@ export function SignUpModal({ onClose, isLoggedIn, setLogin }) {
             <input type="checkbox" />
             Flood Alerts
           </label>
+
           <label>
             <input type="checkbox" />
             Emergency Services
           </label>
+
           <label>
             <input type="checkbox" />
             Local News
           </label>
+
           <label>
             <input type="checkbox" />
             Community Resources
@@ -177,11 +189,15 @@ export function SignUpModal({ onClose, isLoggedIn, setLogin }) {
         </div>
 
         <p style={{ color: "red" }}>
-          {errorMessage ? errorMessage : ""} Don't have an account? <a href="/home">Go to Home to Sign In.</a>
+          {errorMessage ? errorMessage : ""}
+          {" "}Don't have an account?{" "}
+          <a href="/home">Go to Home to Sign In.</a>
         </p>
 
         <p style={{ color: "green" }}>
-          {userCreated ? "User created successfully! Please wait..." : ""}
+          {userCreated
+            ? "User created successfully! Please wait..."
+            : ""}
         </p>
 
         <div className="button-container">

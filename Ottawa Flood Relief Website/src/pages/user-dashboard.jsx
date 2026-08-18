@@ -1,14 +1,16 @@
-import {useState} from 'react';
+import { SideMenuBar } from "../components/side-menu-bar";
+import "./user-dashboard.css";
 
-import {SideMenuBar} from "../components/side-menu-bar";
+export function UserDashboard({ userName }) {
+    return (
+        <div className="dashboard">
 
-export function UserDashboard() {
+            <SideMenuBar />
 
-  const [isOpen, setIsOpen] = useState(false);
+            <div className="dashboard-content">
+                <h2>Welcome back, <span className="user-name">{userName || "no username"}</span>! </h2>
+            </div>
 
-  return (
-      
-      <SideMenuBar isOpen={isOpen} setIsOpen={setIsOpen} />
-  
+        </div>
     );
 }
