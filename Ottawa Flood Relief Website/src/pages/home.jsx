@@ -10,11 +10,19 @@ import { useState } from "react";
 import { SignUpModal } from "../components/sign-up-pop-up-window";
 import { SignInModal } from "../components/sign-in-pop-up-window";
 
+
 export function Home() {
   
+  const [showSignUpModal, setShowSignUpModal] = useState(false);
+
   return (
     <>
 
+      {showSignUpModal &&
+        <SignUpModal onClose={() => setShowSignUpModal(false)} />
+        }
+
+      
       <div className="top-section">
         <div className="type-writer-animation">
           <TypeWriter 
