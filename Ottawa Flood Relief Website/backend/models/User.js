@@ -12,7 +12,7 @@ const UserSchema = new mongoose.Schema({
         unique: true
     },
 
-    address: String,
+    cityArea: String,
 
     numberOfAdults: Number,
 

@@ -39,7 +39,23 @@ export function Map() {
     { geocode: [45.4247, -75.6950], tool_Tip: "Downtown Ottawa" },
     { geocode: [45.2800, -75.7600], tool_Tip: "Barrhaven" },
     { geocode: [45.2280, -75.6810], tool_Tip: "Manotick" },
-    { geocode: [45.4803, -75.5083], tool_Tip: "Orleans"},
+    { geocode: [45.4803, -75.5083], tool_Tip: "Orleans" },
+    { geocode: [45.3500, -75.7500], tool_Tip: "Nepean" },
+    { geocode: [45.3833, -75.7000], tool_Tip: "Alta Vista" },
+    { geocode: [45.3900, -75.6800], tool_Tip: "Elmvale Acres" },
+    { geocode: [45.4100, -75.6300], tool_Tip: "Vanier" },
+    { geocode: [45.4350, -75.6500], tool_Tip: "Overbrook" },
+    { geocode: [45.4500, -75.7000], tool_Tip: "Hintonburg" },
+    { geocode: [45.4000, -75.7300], tool_Tip: "Carlington" },
+    { geocode: [45.3650, -75.7750], tool_Tip: "Bells Corners" },
+    { geocode: [45.3150, -75.8500], tool_Tip: "Kanata" },
+    { geocode: [45.3000, -75.9200], tool_Tip: "Stittsville" },
+    { geocode: [45.3500, -75.9100], tool_Tip: "Terry Fox" },
+    { geocode: [45.4500, -75.4800], tool_Tip: "Beacon Hill" },
+    { geocode: [45.4700, -75.4500], tool_Tip: "Blackburn Hamlet" },
+    { geocode: [45.4300, -75.5200], tool_Tip: "Cumberland" },
+    { geocode: [45.3000, -75.7000], tool_Tip: "Leitrim" },
+    { geocode: [45.2500, -75.7500], tool_Tip: "Fallowfield" }
   ];
 
   return (

@@ -7,7 +7,7 @@ export function SignUpModal({ onClose, setLogin, setUserName }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [address, setAddress] = useState("");
+  const [cityArea, setCityArea] = useState("");
 
   const [numberOfAdults, setNumberOfAdults] = useState(0);
   const [numberOfChildren, setNumberOfChildren] = useState(0);
@@ -42,7 +42,7 @@ export function SignUpModal({ onClose, setLogin, setUserName }) {
           username: username,
           email: email,
           password: password,
-          address: address,
+          cityArea: cityArea,
           numberOfAdults: Number(numberOfAdults) || 0,
           numberOfChildren: Number(numberOfChildren) || 0,
           numberOfPets: Number(numberOfPets) || 0,
@@ -110,10 +110,10 @@ export function SignUpModal({ onClose, setLogin, setUserName }) {
 
         <div className="form-group">
           <input
-            placeholder="Enter your address"
+            placeholder="Enter your city area e.g. Barrhaven"
             type="text"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
+            value={cityArea}
+            onChange={(e) => setCityArea(e.target.value)}
           />
         </div>
 
@@ -162,30 +162,6 @@ export function SignUpModal({ onClose, setLogin, setUserName }) {
             value={specialNeeds}
             onChange={(e) => setSpecialNeeds(e.target.value)}
           />
-        </div>
-
-        <h3>Preferences</h3>
-
-        <div className="checkbox-group">
-          <label>
-            <input type="checkbox" />
-            Flood Alerts
-          </label>
-
-          <label>
-            <input type="checkbox" />
-            Emergency Services
-          </label>
-
-          <label>
-            <input type="checkbox" />
-            Local News
-          </label>
-
-          <label>
-            <input type="checkbox" />
-            Community Resources
-          </label>
         </div>
 
         <p style={{ color: "red" }}>

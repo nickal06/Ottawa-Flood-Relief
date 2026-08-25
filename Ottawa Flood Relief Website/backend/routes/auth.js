@@ -23,7 +23,7 @@ router.post("/register", async (req, res) => {
     const user = new User({
       username: req.body.username, 
       email: req.body.email, 
-      address: req.body.address, 
+      cityArea: req.body.cityArea, 
       numberOfAdults: req.body.numberOfAdults, 
       numberOfChildren: req.body.numberOfChildren, 
       numberOfPets: req.body.numberOfPets, 
