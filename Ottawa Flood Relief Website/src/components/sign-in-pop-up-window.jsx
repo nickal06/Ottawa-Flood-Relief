@@ -3,7 +3,7 @@ import "./sign-in-up-pop-up-window.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
-export function SignInModal({ onClose, setUserName }) {
+export function SignInModal({ onClose, setUserName, setIsLoggedIn }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loginStatus, setLoginStatus] = useState("");
@@ -40,6 +40,8 @@ export function SignInModal({ onClose, setUserName }) {
       localStorage.setItem("userName", data.user.username);
 
       setUserName(data.user.username);
+
+      setIsLoggedIn(true);
 
       setLoginStatus("Login successful! Please wait...");
 

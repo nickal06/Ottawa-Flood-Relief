@@ -15,12 +15,11 @@ export function App() {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showSignInModal, setShowSignInModal] = useState(false);
 
-  // Get username from localStorage when the app starts
   const [userName, setUserName] = useState(
     localStorage.getItem("userName") || ""
   );
 
-  const [isLoggedIn, setLogin] = useState(
+  const [isLoggedIn, setIsLoggedIn] = useState(
     !!localStorage.getItem("token")
   );
 
@@ -33,7 +32,6 @@ export function App() {
     localStorage.setItem("messages", JSON.stringify(messages));
   }, [messages]);
 
-  // Save username whenever it changes
   useEffect(() => {
     if (userName) {
       localStorage.setItem("userName", userName);
@@ -43,12 +41,16 @@ export function App() {
   return (
     <>
       <HeaderBar
-        setShowSignInModal={() => setShowSignInModal(true)}
+        setShowSignInModal={setShowSignInModal}
+        isLoggedIn={isLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
       />
 
       <Routes>
 
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={
+          <Home />} 
+        />
 
         <Route path="/home" element={<Home />} />
 
@@ -74,6 +76,7 @@ export function App() {
         <SignUpModal
           onClose={() => setShowSignUpModal(false)}
           setUserName={setUserName}
+          setIsLoggedIn={setIsLoggedIn}
         />
       )}
 
@@ -81,6 +84,7 @@ export function App() {
         <SignInModal
           onClose={() => setShowSignInModal(false)}
           setUserName={setUserName}
+          setIsLoggedIn={setIsLoggedIn}
         />
       )}
     </>

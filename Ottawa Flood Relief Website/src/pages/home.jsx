@@ -1,17 +1,13 @@
-import { HeaderBar } from "../components/header-bar";
 import { TypeWriter } from "../components/typewriter-text";
 import "./Home.css";
 import { InfoSection } from "../components/Info-Section";
 import reliefImage from "../assets/relief.png";
 import newsImage from "../assets/news.png";
 import alertImage from "../assets/alert-icon.png";
-import { AddressSearchComponent } from "../components/address-search";
 import { useState } from "react";
 import { SignUpModal } from "../components/sign-up-pop-up-window";
-import { SignInModal } from "../components/sign-in-pop-up-window";
 
-
-export function Home() {
+export function Home({ signInStatus }) {
   
   const [showSignUpModal, setShowSignUpModal] = useState(false);
 
@@ -57,7 +53,6 @@ export function Home() {
         className="info-section-container-grey"  
         image={newsImage}
       />
-      < AddressSearchComponent />
     </>
   );
 }
