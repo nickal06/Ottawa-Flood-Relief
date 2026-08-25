@@ -76,7 +76,6 @@ export function App() {
         <SignUpModal
           onClose={() => setShowSignUpModal(false)}
           setUserName={setUserName}
-          setIsLoggedIn={setIsLoggedIn}
         />
       )}
 

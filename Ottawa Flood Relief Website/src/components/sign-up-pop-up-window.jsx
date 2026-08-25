@@ -191,7 +191,7 @@ export function SignUpModal({ onClose, setLogin, setUserName }) {
         <p style={{ color: "red" }}>
           {errorMessage ? errorMessage : ""}
           {" "}Don't have an account?{" "}
-          <a href="/home">Go to Home to Sign In.</a>
+          <a href="/home">Go to Home to Sign Up.</a>
         </p>
 
         <p style={{ color: "green" }}>

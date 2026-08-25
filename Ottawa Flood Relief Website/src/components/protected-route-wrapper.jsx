@@ -1,8 +1,8 @@
-import { SignUpModal } from "./sign-up-pop-up-window";
+import { Navigate } from "react-router-dom";
 
-export function ProtectedRoute({ isLoggedIn, setLogin, children}){
-  if (!isLoggedIn){
-    return <SignUpModal setLogin={setLogin}/>
+export function ProtectedRoute({ isLoggedIn, children }) {
+  if (!isLoggedIn) {
+    return <Navigate to="/home" replace />;
   }
 
   return children;
