@@ -9,37 +9,68 @@ router.post("/register", async (req, res) => {
   try {
     if (User.db.readyState !== 1) {
       console.error("Database connection is not active!");
-      return res.status(500).send("Database connection lost. Please try again.");
+
+      return res.status(500).json({
+        message: "Database connection lost. Please try again."
+      });
     }
 
-    const existingUser = await User.findOne({ email: req.body.email }).maxTimeMS(3000); 
+    const existingUser = await User.findOne({
+      email: req.body.email
+    }).maxTimeMS(3000);
 
     if (existingUser) {
-      return res.status(400).send("User already exists with this email");
+      return res.status(400).json({
+        message: "User already exists with this email"
+      });
     }
 
-    const hashedPassword = await bcrypt.hash(req.body.password, 10); 
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
     const user = new User({
-      username: req.body.username, 
-      email: req.body.email, 
-      cityArea: req.body.cityArea, 
-      numberOfAdults: req.body.numberOfAdults, 
-      numberOfChildren: req.body.numberOfChildren, 
-      numberOfPets: req.body.numberOfPets, 
-      specialNeeds: req.body.specialNeeds, 
-      password: hashedPassword, 
+      username: req.body.username,
+      email: req.body.email,
+      cityArea: req.body.cityArea,
+      numberOfAdults: req.body.numberOfAdults,
+      numberOfChildren: req.body.numberOfChildren,
+      numberOfPets: req.body.numberOfPets,
+      password: hashedPassword,
     });
 
-    await user.save({ maxTimeMS: 3000 }); 
+    await user.save({ maxTimeMS: 3000 });
+
     console.log("--> User successfully saved to MongoDB!");
 
-    return res.status(201).send("User created successfully");
+    const token = jtoken.sign(
+      {
+        id: user._id,
+        email: user.email
+      },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "24h"
+      }
+    );
+
+    return res.status(201).json({
+      message: "User created successfully",
+      token: token,
+      user: {
+        id: user._id,
+        email: user.email,
+        username: user.username
+      }
+    });
 
   } catch (error) {
     console.error("--> Registration Catch Block Triggered:", error);
-    const message = error.message || String(error) || "Registration failed";
-    return res.status(500).send(message); 
+
+    const message =
+      error.message || String(error) || "Registration failed";
+
+    return res.status(500).json({
+      message: message
+    });
   }
 });
 

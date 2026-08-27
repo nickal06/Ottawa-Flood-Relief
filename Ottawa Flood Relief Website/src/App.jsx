@@ -8,11 +8,8 @@ import { Map } from "./pages/map";
 import { AIChatWidget } from "./components/AI-chat-widget";
 import { HeaderBar } from "./components/header-bar";
 import { SignInModal } from "./components/sign-in-pop-up-window";
-import { SignUpModal } from "./components/sign-up-pop-up-window";
 
 export function App() {
-
-  const [showSignUpModal, setShowSignUpModal] = useState(false);
   const [showSignInModal, setShowSignInModal] = useState(false);
 
   const [userName, setUserName] = useState(
@@ -47,12 +44,25 @@ export function App() {
       />
 
       <Routes>
-
-        <Route path="/" element={
-          <Home />} 
+        <Route
+          path="/"
+          element={
+            <Home
+              setUserName={setUserName}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          }
         />
 
-        <Route path="/home" element={<Home />} />
+        <Route
+          path="/home"
+          element={
+            <Home
+              setUserName={setUserName}
+              setIsLoggedIn={setIsLoggedIn}
+            />
+          }
+        />
 
         <Route path="/map" element={<Map />} />
 
@@ -64,20 +74,12 @@ export function App() {
             </ProtectedRoute>
           }
         />
-
       </Routes>
 
       <AIChatWidget
         messages={messages}
         setMessages={setMessages}
       />
-
-      {showSignUpModal && (
-        <SignUpModal
-          onClose={() => setShowSignUpModal(false)}
-          setUserName={setUserName}
-        />
-      )}
 
       {showSignInModal && (
         <SignInModal

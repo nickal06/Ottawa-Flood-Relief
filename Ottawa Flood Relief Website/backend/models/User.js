@@ -20,8 +20,6 @@ const UserSchema = new mongoose.Schema({
 
     numberOfPets: Number,
 
-    specialNeeds: String,
-
     password: {
         type: String,
         required: true

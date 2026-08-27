@@ -3,16 +3,15 @@ import { Modal } from "./modal";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export function SignUpModal({ onClose, setLogin, setUserName }) {
+export function SignUpModal({ onClose, setUserName, setIsLoggedIn }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [cityArea, setCityArea] = useState("");
 
-  const [numberOfAdults, setNumberOfAdults] = useState(0);
-  const [numberOfChildren, setNumberOfChildren] = useState(0);
-  const [numberOfPets, setNumberOfPets] = useState(0);
-  const [specialNeeds, setSpecialNeeds] = useState("");
+  const [numberOfAdults, setNumberOfAdults] = useState("");
+  const [numberOfChildren, setNumberOfChildren] = useState("");
+  const [numberOfPets, setNumberOfPets] = useState("");
 
   const [userCreated, setUserCreated] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -23,7 +22,6 @@ export function SignUpModal({ onClose, setLogin, setUserName }) {
     event.preventDefault();
 
     setErrorMessage("");
-    setUserCreated(false);
 
     if (password !== confirmPassword) {
       setErrorMessage("Passwords do not match!");
@@ -33,35 +31,44 @@ export function SignUpModal({ onClose, setLogin, setUserName }) {
     const username = email ? email.split("@")[0] : "";
 
     try {
-      const response = await fetch("http://localhost:5000/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username: username,
-          email: email,
-          password: password,
-          cityArea: cityArea,
-          numberOfAdults: Number(numberOfAdults) || 0,
-          numberOfChildren: Number(numberOfChildren) || 0,
-          numberOfPets: Number(numberOfPets) || 0,
-          specialNeeds: specialNeeds,
-        }),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: username,
+            email: email,
+            password: password,
+            cityArea: cityArea,
+            numberOfAdults: Number(numberOfAdults) || 0,
+            numberOfChildren: Number(numberOfChildren) || 0,
+            numberOfPets: Number(numberOfPets) || 0,
+          }),
+        }
+      );
 
       const data = await response.text();
+
+      console.log("STATUS:", response.status);
+      console.log("RESPONSE:", data);
 
       console.log("Server response:", data);
 
       if (!response.ok) {
         console.error("Registration error:", data);
-        setErrorMessage(data || "An error occurred. Please try again.");
+        setErrorMessage(
+          data.message || "An error occurred. Please try again."
+        );
         return;
       }
 
+      localStorage.setItem("token", data.token);
+      setUserName(username)
       setUserCreated(true);
-      setLogin(true);
+      setIsLoggedIn(true);
 
       setTimeout(() => {
         onClose();
@@ -125,9 +132,12 @@ export function SignUpModal({ onClose, setLogin, setUserName }) {
             type="number"
             min="0"
             value={numberOfAdults}
-            onChange={(e) =>
-              setNumberOfAdults(Math.max(0, Number(e.target.value)))
-            }
+            onChange={(e) => {
+              const val = e.target.value;
+              setNumberOfAdults(
+                val === "" ? "" : Math.max(0, Number(val))
+              );
+            }}
           />
         </div>
 
@@ -137,9 +147,12 @@ export function SignUpModal({ onClose, setLogin, setUserName }) {
             type="number"
             min="0"
             value={numberOfChildren}
-            onChange={(e) =>
-              setNumberOfChildren(Math.max(0, Number(e.target.value)))
-            }
+            onChange={(e) => {
+              const val = e.target.value;
+              setNumberOfChildren(
+                val === "" ? "" : Math.max(0, Number(val))
+              );
+            }}
           />
         </div>
 
@@ -149,25 +162,22 @@ export function SignUpModal({ onClose, setLogin, setUserName }) {
             type="number"
             min="0"
             value={numberOfPets}
-            onChange={(e) =>
-              setNumberOfPets(Math.max(0, Number(e.target.value)))
-            }
+            onChange={(e) => {
+              const val = e.target.value;
+              setNumberOfPets(
+                val === "" ? "" : Math.max(0, Number(val))
+              );
+            }}
           />
         </div>
 
-        <div className="form-group">
-          <input
-            placeholder="Specify any special needs or considerations"
-            type="text"
-            value={specialNeeds}
-            onChange={(e) => setSpecialNeeds(e.target.value)}
-          />
-        </div>
+        <p style={{ color: "teal" }}>
+          Don't have an account?{" "}
+          <a href="/home">Go to Home to Sign Up.</a>
+        </p>
 
         <p style={{ color: "red" }}>
           {errorMessage ? errorMessage : ""}
-          {" "}Don't have an account?{" "}
-          <a href="/home">Go to Home to Sign Up.</a>
         </p>
 
         <p style={{ color: "green" }}>

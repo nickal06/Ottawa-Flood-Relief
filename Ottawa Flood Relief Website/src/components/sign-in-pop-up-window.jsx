@@ -1,4 +1,4 @@
-import { Modal } from "./Modal";
+import { Modal } from "./modal";
 import "./sign-in-up-pop-up-window.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";

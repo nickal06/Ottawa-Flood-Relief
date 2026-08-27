@@ -7,18 +7,19 @@ import alertImage from "../assets/alert-icon.png";
 import { useState } from "react";
 import { SignUpModal } from "../components/sign-up-pop-up-window";
 
-export function Home({ signInStatus }) {
-  
+export function Home({ setIsLoggedIn, setUserName }) {
   const [showSignUpModal, setShowSignUpModal] = useState(false);
 
   return (
     <>
+      {showSignUpModal && (
+        <SignUpModal
+          onClose={() => setShowSignUpModal(false)}
+          setUserName={setUserName}
+          setIsLoggedIn={setIsLoggedIn}
+        />
+      )}
 
-      {showSignUpModal &&
-        <SignUpModal onClose={() => setShowSignUpModal(false)} />
-        }
-
-      
       <div className="top-section">
         <div className="type-writer-animation">
           <TypeWriter 
